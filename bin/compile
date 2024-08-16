@@ -5,11 +5,11 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
 echo "-----> Installing Node.js"
-# Ajouter le dépôt NodeSource pour Node.js
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+# Télécharger le script d'installation de Node.js
+curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 
 # Installer Node.js (inclut npm)
-sudo apt-get install -y nodejs
+apt-get install -y nodejs
 
 echo "-----> Installing application dependencies"
 # Accéder au répertoire de l'application et installer les dépendances
