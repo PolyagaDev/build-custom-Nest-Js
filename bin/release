@@ -8,5 +8,5 @@ config_vars:
   NODE_ENV: production
   PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
 default_process_types:
-  web: nest start prod
+  web: npm run start:prod
 EOF
