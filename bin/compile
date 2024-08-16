@@ -8,15 +8,15 @@ echo "-----> Installing Node.js and npm using nvm"
 
 # Télécharger et installer nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+export NVM_DIR="$BUILD_DIR/.nvm"
+. "$NVM_DIR/nvm.sh"
 
 # Installer et utiliser la version spécifiée de Node.js
 nvm install 20
 nvm use 20
 
 # Configurer les binaires pour qu'ils soient disponibles au runtime
-export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
+export PATH="$NVM_DIR/versions/node/v20/bin:$PATH"
 
 echo "-----> Node.js version"
 node -v
@@ -31,11 +31,11 @@ npm install
 echo "-----> Building the application"
 npm run build
 
-# Sauvegarder le fichier .profile.d/nvm.sh pour utilisation au runtime
+# Sauvegarder la configuration nvm pour le runtime
 mkdir -p "$BUILD_DIR/.profile.d"
-cat <<-'EOF' > "$BUILD_DIR/.profile.d/nvm.sh"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
-nvm use 14
+cat <<EOF > "$BUILD_DIR/.profile.d/nvm.sh"
+export NVM_DIR="\$HOME/.nvm"
+[ -s "\$NVM_DIR/nvm.sh" ] && . "\$NVM_DIR/nvm.sh"
+export PATH="\$NVM_DIR/versions/node/v20/bin:\$PATH"
+nvm use 20
 EOF
