@@ -1,16 +1,20 @@
 #!/bin/bash
 
- BUILD_DIR=${1:-}
- CACHE_DIR=${2:-}
- ENV_DIR=${3:-}
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
 
- echo "-----> Installing Node.js and npm"
- apt-get update
- apt-get install --yes nodejs npm
+echo "-----> Using preinstalled Node.js and npm"
+# Assurer que npm est installé
+if ! command -v npm &> /dev/null
+then
+    echo "npm could not be found"
+    exit 1
+fi
 
- echo "-----> Installing dependencies"
- cd "$BUILD_DIR"
- npm install
+echo "-----> Installing dependencies"
+cd "$BUILD_DIR" || exit
+npm install
 
- echo "-----> Building the application"
- npm run build
+echo "-----> Building the application"
+npm run build
