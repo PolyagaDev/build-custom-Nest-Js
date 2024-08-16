@@ -14,8 +14,8 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Installer et utiliser la version spécifiée de Node.js (adaptez à la version que vous souhaitez utiliser)
-nvm install 14
-nvm use 14
+nvm install 20
+nvm use 20
 
 # Configurer les binaires pour qu'ils soient disponibles au runtime
 export PATH="$NVM_BIN:$PATH"
