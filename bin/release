@@ -2,6 +2,11 @@
 
 cat << EOF
 ---
+addons:
+  - scalingo-postgresql
+config_vars:
+  NODE_ENV: production
+  PATH: /app/bin:/usr/local/bin:/usr/bin:/bin
 default_process_types:
-  web: npm run start
+  web: npm run start:prod
 EOF
